@@ -1,0 +1,39 @@
+<p>You have reached in Notification service now</p>
+<div class="container">
+    {{data | json}}
+    <div class="card">
+        <form (ngSubmit)="doSubmitForm()">
+            <h4>Enter Notification To</h4>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>Fill Value</mat-label>
+                <input name="value1" [(ngModel)]="data.value1" matInput placeholder="Enter Id">
+            </mat-form-field>
+            <h4>Enter Notification</h4>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>Fill Value</mat-label>
+                <input name="value2" [(ngModel)]="data.value2" matInput placeholder="Enter something">
+            </mat-form-field>
+            <h4>Enter Text</h4>
+            <mat-form-field class="example-full-width field">
+                <mat-label>Enter Your Ans</mat-label>
+                <textarea name="value3" [(ngModel)]="data.value3" rows="1" matInput
+                    placeholder="He , Enter your ans"></textarea>
+            </mat-form-field>
+            <h4>Enter password</h4>
+            <mat-form-field>
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide() ? 'password' : 'text'" />
+                <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide()">
+                    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+           
+            <div class="text-center">
+                <button type="submit" color="primary" mat-raised-button>Send</button>
+                &nbsp;&nbsp;
+                <button type="reset" color="accent" mat-raised-button>Reset</button>
+            </div>
+        </form>
+    </div>
+</div>

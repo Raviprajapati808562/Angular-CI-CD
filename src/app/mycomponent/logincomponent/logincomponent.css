@@ -1,0 +1,45 @@
+.auth-card {
+  background: #c31432; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #240b36,
+    #c31432
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #240b36,
+    #cb2a45
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 5px;
+  box-shadow: 0px 0px 30px #f7f7f7;
+}
+label {
+  color: #fff;
+  font-weight: 700;
+}
+.user-image {
+  height: 70px;
+}
+.auth-avatar {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.btn-my {
+  background-color: #d39e00;
+  border-color: #d39e00;
+  color: #fff;
+}
+.simple-keyboard {
+  max-width: 850px;
+}
+.form-control{
+    text-align: center;
+    margin-top: 5px;
+}
+.form-group{
+    text-align: center;
+}
+.text-center{
+    text-align: center;
+}

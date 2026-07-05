@@ -1,0 +1,21 @@
+h1 {
+  color: rgb(56, 6, 237);
+  text-align: center;
+  text-align-last: auto;
+}
+
+.center {
+  flex: 1;
+  text-align: center;
+  color: rgb(247, 241, 241);
+  font-weight: bold;
+}
+
+.toolBar {
+  font-weight: 300;
+  background-color: #031680;
+  height: 50px;
+  min-height: 50px;
+  padding: 0 10px;
+  font-size: 29px;
+}

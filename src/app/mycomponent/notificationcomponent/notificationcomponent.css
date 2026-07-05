@@ -1,0 +1,25 @@
+p{
+    color: rgb(231, 16, 34);
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+.container{
+    text-align: center;
+    margin-top: 10px;
+}
+.card{
+    width: 70%;
+    margin: auto;
+    background-color: rgb(222, 208, 236);
+
+}
+.field{
+    width: 100%;
+}
+.text-center{
+    margin: 10px;
+}
+.mat-spinner{
+    margin: auto;
+}
