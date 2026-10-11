@@ -21,9 +21,9 @@ import { CommonModule } from '@angular/common';
 })
 export class Notificationcomponent implements OnInit {
   data = {
-    value1: "",
-    value2: "",
-    value3: "",
+    id: 0,
+      name: '',
+    salary: 0,
   }
   constructor(private notification:  Notificationbackend, private snack: MatSnackBar) { }
   ngOnInit(): void {
@@ -36,8 +36,8 @@ export class Notificationcomponent implements OnInit {
   }
   flagSpin = true;
   doSubmitForm() {
-    console.log("Form Data", this.data.value1);
-    if (this.data.value1 == '' || this.data.value2 == '') {
+    console.log("Form Data", this.data.id);
+    if (this.data.name == '' || this.data.salary == 0) {
       this.snack.open("Don't sent blank data", "OK");
       return;
     }

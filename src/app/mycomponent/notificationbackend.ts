@@ -10,7 +10,7 @@ export class Notificationbackend {
     constructor(private http: HttpClient) {
     }
     sendNoti(data: any) {
-        return this.http.post(`${this.baseUrl}/postData`, data, { responseType: 'text' });
+        return this.http.post(`${this.baseUrl}/getApiData/empData`, data, { responseType: 'text' });
     }
     getData() {
         return this.http.get(`${this.baseUrl}/getApiData`, { responseType: 'json' });

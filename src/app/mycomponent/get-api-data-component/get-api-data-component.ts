@@ -38,7 +38,6 @@ export class GetApiDataComponent implements OnInit {
           horizontalPosition: 'right',
           verticalPosition: 'top'
         });
-
       }
     });
   }
