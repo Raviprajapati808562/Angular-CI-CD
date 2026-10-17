@@ -1,15 +1,30 @@
-<div class="container">
-  <h1>Welcome to Angular learning HOME-App</h1>
-  <a routerLink="/SendNotification" mat-flat-button color="primary">
-    Send Notification
-  </a>
-  &nbsp;&nbsp;
-  <a routerLink="/" mat-flat-button color="secondary" style="color: rgb(130, 23, 23);">
-    Log Out
-  </a>
-  <br><br>
-  &nbsp;&nbsp;
-  <a routerLink="/getDataFromApi" mat-flat-button color="primary" style="color: rgb(118, 23, 130);">
-    Fetch Data from API
-  </a>
+
+<div class="app-layout">
+
+  <aside class="sidebar" [class.collapsed]="!sidebarOpen">
+    <h3>MAIN MENU</h3>
+
+    <a routerLink="/SendNotification" routerLinkActive="active">
+      🔔 <span>Send Notification</span>
+    </a>
+
+    <a routerLink="/getDataFromApi" routerLinkActive="active">
+      📊 <span>Fetch API Data</span>
+    </a>
+
+    <a routerLink="/getCarDataFromApi" routerLinkActive="active">
+      🚗 <span>Fetch Car Data</span>
+    </a>
+    <a routerLink="/fileUpload" routerLinkActive="active">
+  📁 <span>File Upload</span>
+</a>
+    <a routerLink="/" routerLinkActive="active">
+      � <span>Logout</span>
+    </a>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
 </div>

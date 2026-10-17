@@ -1,0 +1,51 @@
+<div class="upload-page">
+  <div class="upload-card">
+
+    <div class="upload-icon">📂</div>
+
+    <h2>Upload Excel File</h2>
+    <p class="subtitle">
+      Select your Excel file to insert records into the database.
+    </p>
+
+    <div class="file-box">
+      <input
+        type="file"
+        id="excelFile"
+        accept=".xlsx,.xls"
+        (change)="onFileSelected($event)"
+      />
+
+      <label for="excelFile" class="file-label">
+        📁 Choose Excel File
+      </label>
+
+      <p *ngIf="selectedFile" class="file-name">
+        Selected: {{ selectedFile.name }}
+      </p>
+
+      <p *ngIf="!selectedFile" class="file-hint">
+        Supported formats: .xlsx, .xls
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="upload-btn"
+      (click)="uploadFile()"
+      [disabled]="uploading || !selectedFile">
+
+      {{ uploading ? 'Uploading...' : '⬆ Upload File' }}
+    </button>
+
+    <div
+      *ngIf="message"
+      class="success-message"
+      [class.error-message]="message.toLowerCase().includes('failed') ||
+                            message.toLowerCase().includes('please select')">
+
+      <span>{{ message }}</span>
+    </div>
+
+  </div>
+</div>

@@ -15,4 +15,7 @@ export class Notificationbackend {
     getData() {
         return this.http.get(`${this.baseUrl}/getApiData`, { responseType: 'json' });
     }
+     getCarData() {
+        return this.http.get(`${this.baseUrl}/getApiData/carApiEndPoint`, { responseType: 'text' });
+    }
 }
