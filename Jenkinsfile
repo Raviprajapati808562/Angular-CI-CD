@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -25,11 +26,18 @@ pipeline {
                 bat 'docker build -t angular-app:latest .'
             }
         }
+
+        stage('Run Angular Container') {
+            steps {
+                bat 'docker rm -f angular-app 2>NUL'
+                bat 'docker run -d --name angular-app -p 4000:4000 angular-app:latest'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Angular build and Docker image completed successfully!'
+            echo 'Angular build, Docker image, and container started successfully!'
         }
         failure {
             echo 'Pipeline failed. Check Console Output.'
