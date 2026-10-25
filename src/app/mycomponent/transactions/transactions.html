@@ -1,0 +1,79 @@
+<div class="page-container">
+
+  <h1>{{ pageTitle }}</h1>
+  <p>Monitor and manage bank transactions.</p>
+
+  <!-- Loading message -->
+  <p *ngIf="loading">Loading transactions...</p>
+
+  <!-- Error message -->
+  <p *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </p>
+
+  <!-- Summary cards -->
+  <div class="summary-container">
+
+    <div class="summary-card">
+      <h3>Total Transactions</h3>
+      <h2>{{ transactions.length }}</h2>
+    </div>
+
+    <div class="summary-card">
+      <h3>Matched</h3>
+      <h2>{{ countByStatus('MATCHED') }}</h2>
+    </div>
+
+    <div class="summary-card">
+      <h3>Pending</h3>
+      <h2>{{ countByStatus('PENDING') }}</h2>
+    </div>
+
+    <div class="summary-card">
+      <h3>Unmatched</h3>
+      <h2>{{ countByStatus('UN-MATCHED') }}</h2>
+    </div>
+
+  </div>
+
+  <!-- Transactions table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Reference Number</th>
+          <th>Account Number</th>
+          <th>Amount</th>
+          <th>Direction</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of transactions">
+
+          <td>{{ txn.id }}</td>
+
+          <td>{{ txn.reference_number }}</td>
+
+          <td>{{ txn.account_number }}</td>
+
+          <td>{{ txn.amount | number:'1.2-2' }}</td>
+
+          <td>{{ txn.direction }}</td>
+          <td>
+            <span
+              class="status"
+              [ngClass]="txn.status?.toLowerCase()">
+              {{ txn.status }}
+            </span>
+          </td>
+        </tr>
+        <!-- Empty state -->
+        <tr *ngIf="!loading && transactions.length === 0 && !errorMessage">
+          <td colspan="6">No transactions found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

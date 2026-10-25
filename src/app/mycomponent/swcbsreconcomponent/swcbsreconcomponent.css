@@ -1,0 +1,52 @@
+p{
+   background: #8909df;
+   color: #fff;
+  font-size: 30px;
+}
+.recon-container {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #00000012;
+  max-width: 900px;
+  margin: 24px auto;
+}
+
+.recon-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #12334d;
+  margin-bottom: 24px;
+}
+
+.recon-header mat-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  color: #008577;
+}
+
+.recon-header h2 {
+  margin: 0 0 6px;
+}
+
+.recon-header p {
+  margin: 0;
+  color: #64748b;
+}
+
+.recon-form {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+mat-form-field {
+  min-width: 250px;
+}
+
+button mat-icon {
+  margin-right: 6px;
+}

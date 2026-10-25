@@ -1,0 +1,125 @@
+<div class="transaction-container">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h2>Add Transaction</h2>
+            <p>Enter the banking transaction details below.</p>
+        </div>
+
+        <a routerLink="/transactions" class="btn-secondary">
+            Back to Transactions
+        </a>
+    </div>
+
+    <!-- Transaction Form -->
+    <div class="form-card">
+
+        <h3>Transaction Details</h3>
+        <p class="form-description">
+            Fields marked with * are mandatory.
+        </p>
+
+        <form #transactionForm="ngForm" (ngSubmit)="saveTransaction(transactionForm)">
+
+            <div class="form-grid">
+
+                <!-- Reference Number -->
+                <div class="form-group">
+                    <label for="referenceNumber">
+                        Reference Number *
+                    </label>
+
+                    <input type="text" id="referenceNumber" name="reference_number"
+                        [(ngModel)]="transaction.reference_number" placeholder="e.g. NEFT-10007" required
+                        #referenceNumber="ngModel" />
+
+                    <small class="error" *ngIf="referenceNumber.invalid && referenceNumber.touched">
+                        Reference number is required.
+                    </small>
+                </div>
+
+                <!-- Account Number -->
+                <div class="form-group">
+                    <label for="accountNumber">
+                        Account Number *
+                    </label>
+
+                    <input type="text" id="accountNumber" name="account_number" [(ngModel)]="transaction.account_number"
+                        placeholder="Enter account number" required #accountNumber="ngModel" />
+
+                    <small class="error" *ngIf="accountNumber.invalid && accountNumber.touched">
+                        Account number is required.
+                    </small>
+                </div>
+
+                <!-- Amount -->
+                <div class="form-group">
+                    <label for="amount">
+                        Amount (₹) *
+                    </label>
+
+                    <input type="number" id="amount" name="amount" [(ngModel)]="transaction.amount"
+                        placeholder="Enter transaction amount" min="0.01" step="0.01" required #amount="ngModel" />
+
+                    <small class="error" *ngIf="amount.invalid && amount.touched">
+                        Enter a valid amount greater than zero.
+                    </small>
+                </div>
+
+                <!-- Transaction Direction -->
+                <div class="form-group">
+                    <label for="direction">
+                        Transaction Direction *
+                    </label>
+
+                    <select id="direction" name="direction" [(ngModel)]="transaction.direction" required>
+                        <option value="" disabled>Select direction</option>
+                        <option value="CREDIT">Credit</option>
+                        <option value="DEBIT">Debit</option>
+                    </select>
+                </div>
+
+                <!-- Transaction Status -->
+                <div class="form-group">
+                    <label for="status">
+                        Transaction Status *
+                    </label>
+
+                    <select id="status" name="status" [(ngModel)]="transaction.status" required>
+                        <option value="" disabled>Select status</option>
+                        <option value="PENDING">Pending</option>
+                        <option value="MATCHED">Matched</option>
+                        <option value="UN-MATCHED">Unmatched</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Backend Success Message -->
+            <div class="success-message" *ngIf="successMessage()" role="status">
+                {{ successMessage() }}
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" *ngIf="errorMessage()" role="alert">
+                {{ errorMessage() }}
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="form-actions">
+
+                <button type="button" class="btn-secondary" (click)="resetForm(transactionForm)" [disabled]="saving()">
+                    Reset
+                </button>
+
+                <button type="submit" class="btn-primary" [disabled]="transactionForm.invalid || saving()">
+                    {{ saving() ? 'Saving...' : 'Save Transaction' }}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

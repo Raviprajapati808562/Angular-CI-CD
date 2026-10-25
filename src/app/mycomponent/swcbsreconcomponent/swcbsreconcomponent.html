@@ -1,0 +1,58 @@
+
+<div class="recon-container">
+
+  <div class="recon-header">
+    <mat-icon>sync_alt</mat-icon>
+    <div>
+      <h2>Reconciliation Interface</h2>
+      <p>Select transaction date and cycle to run reconciliation.</p>
+    </div>
+  </div>
+
+  <div class="recon-form">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Transaction Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="txnDate"
+        placeholder="Select date"
+      />
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker">
+      </mat-datepicker-toggle>
+
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select Cycle</mat-label>
+      <mat-select [(ngModel)]="selectedCycle">
+        <mat-option
+          *ngFor="let cycle of cycles"
+          [value]="cycle">
+          Cycle {{ cycle }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="runRecon()"
+      [disabled]="loading">
+
+      <mat-icon>sync_alt</mat-icon>
+      {{ loading ? 'Processing...' : 'Run Reconciliation' }}
+    </button>
+
+  </div>
+
+  <p *ngIf="message" class="recon-message">
+    {{ message }}
+  </p>
+
+</div>
