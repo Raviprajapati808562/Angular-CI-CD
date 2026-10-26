@@ -30,7 +30,7 @@ pipeline {
         stage('Run Angular Container') {
             steps {
                 bat 'docker rm -f angular-app 2>NUL'
-                bat 'docker run -d --name angular-app -p 4000:4000 angular-app:latest'
+                bat 'docker run -d --name angular-app -p 4200:4000 angular-app:latest'
             }
         }
     }
