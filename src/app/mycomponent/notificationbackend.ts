@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 })
 export class Notificationbackend {
-    private baseUrl: string = "http://localhost:9091";
+    private baseUrl: string = "http://localhost:9092";
     private transactionUrl: string = "http://localhost:9091";
 
     constructor(private http: HttpClient) {
