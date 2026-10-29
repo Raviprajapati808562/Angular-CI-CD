@@ -5,24 +5,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mycarcomponent',
-   imports: [CommonModule],
+  imports: [CommonModule],
   templateUrl: './mycarcomponent.html',
   styleUrl: './mycarcomponent.css',
 })
 export class Mycarcomponent implements OnInit {
- apiCarData: any;
+  apiCarData: any;
   carDataFetched = false;
 
-constructor(private notification: Notificationbackend, private snack: MatSnackBar, 
+  constructor(private notification: Notificationbackend, private snack: MatSnackBar,
     private cdr: ChangeDetectorRef) {
 
   }
- ngOnInit(): void {
+  ngOnInit(): void {
     this.notification.getCarData().subscribe({
       next: (response) => {
         console.log(response);
         this.apiCarData = response;
-          this.carDataFetched = true;
+        this.carDataFetched = true;
         this.cdr.detectChanges();
         this.snack.open("Data Fetched from backend API", "OK", {
           duration: 3000,
@@ -34,10 +34,10 @@ constructor(private notification: Notificationbackend, private snack: MatSnackBa
       error: (error) => {
         console.log(error);
         console.error('Car API Error:', error);
-  console.log('Status:', error.status);
-  console.log('Message:', error.message);
-  console.log('Response:', error.error);
-          this.carDataFetched = false;
+        console.log('Status:', error.status);
+        console.log('Message:', error.message);
+        console.log('Response:', error.error);
+        this.carDataFetched = false;
         this.snack.open("Don't sent blank data ok ", "OK", {
           duration: 3000,
           horizontalPosition: 'right',
