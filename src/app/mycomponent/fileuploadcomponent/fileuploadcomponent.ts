@@ -73,7 +73,7 @@ export class FileUploadComponent implements OnInit {
     this.message = 'Uploading file...';
 
     this.http.post(
-      'http://localhost:9091/getApiData/uploadFile',
+      'http://localhost:9092/getApiData/uploadFile',
       formData,
       { responseType: 'text' }
     ).subscribe({
