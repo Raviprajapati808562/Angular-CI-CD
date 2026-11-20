@@ -1,4 +1,6 @@
 node_modules
-.angular
 .git
-.vscode
+.gitignore
+.angular/cache
+coverage
+*.log
