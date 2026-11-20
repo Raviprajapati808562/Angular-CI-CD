@@ -62,11 +62,12 @@ export class Notificationbackend {
       data
     );
   }
- askAI(question: string) {
-  return this.http.post(
-    `${this.transactionUrl}/ai/api/ask`,
-    { question },
-    { responseType: 'text' }
-  );
-}
+ // AI API - Using Angular Proxy
+  askAI(question: string) {
+    return this.http.post(
+      '/ai/api/ask',
+      { question },
+      { responseType: 'text' }
+    );
+  }
 }
