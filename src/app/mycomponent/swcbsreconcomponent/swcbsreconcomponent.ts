@@ -1,9 +1,8 @@
 
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
+import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -17,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [
     FormsModule,
-    NgFor,
+    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
