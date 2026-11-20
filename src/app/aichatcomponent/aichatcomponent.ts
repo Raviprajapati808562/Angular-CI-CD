@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Notificationbackend } from '../mycomponent/notificationbackend';
@@ -9,53 +9,62 @@ import { Notificationbackend } from '../mycomponent/notificationbackend';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './aichatcomponent.html',
-  styleUrl: './aichatcomponent.css',
+  styleUrl: './aichatcomponent.css'
 })
 export class Aichatcomponent {
 
-  question: string = '';
-  messages: { text: string; sender: string }[] = [];
+  question = '';
 
-  loading: boolean = false;
+  messages = signal<{ text: string; sender: string }[]>([]);
+
+  loading = signal(false);
 
   constructor(private backend: Notificationbackend) {}
 
   sendMessage() {
 
-    if (!this.question.trim() || this.loading) {
+    const userQuestion = this.question.trim();
+
+    if (!userQuestion || this.loading()) {
       return;
     }
 
-    const userQuestion = this.question;
-
-    this.messages.push({
-      text: userQuestion,
-      sender: 'user'
-    });
+    this.messages.update(oldMessages => [
+      ...oldMessages,
+      { text: userQuestion, sender: 'user' }
+    ]);
 
     this.question = '';
-    this.loading = true;
+    this.loading.set(true);
 
     this.backend.askAI(userQuestion).subscribe({
+
       next: (response: string) => {
 
-        this.messages.push({
-          text: response,
-          sender: 'bot'
-        });
+        console.log('AI RESPONSE:', response);
 
-        this.loading = false;
+        this.messages.update(oldMessages => [
+          ...oldMessages,
+          { text: response, sender: 'bot' }
+        ]);
+
+        this.loading.set(false);
+
       },
 
       error: (error) => {
 
-        this.messages.push({
-          text: 'Unable to connect to AI server. Please try again.',
-          sender: 'bot'
-        });
+        console.error('AI ERROR:', error);
 
-        console.error(error);
-        this.loading = false;
+        this.messages.update(oldMessages => [
+          ...oldMessages,
+          {
+            text: 'Unable to connect to AI server. Please try again.',
+            sender: 'bot'
+          }
+        ]);
+
+        this.loading.set(false);
       }
     });
   }

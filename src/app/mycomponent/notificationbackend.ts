@@ -62,9 +62,9 @@ export class Notificationbackend {
       data
     );
   }
-  askAI(question: string) {
+ askAI(question: string) {
   return this.http.post(
-    `${this.transactionUrl}/ai/api/ask`,
+    '/ai/api/ask',
     { question },
     { responseType: 'text' }
   );

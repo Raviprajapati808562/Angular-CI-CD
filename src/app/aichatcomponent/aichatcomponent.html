@@ -5,15 +5,18 @@
   <div class="chat-header">
     <div class="bot-icon">🤖</div>
 
-    <div>
+    <div class="header-info">
       <h2>Learning AI Assistant</h2>
       <p>Powered by Ollama - llama3.2</p>
     </div>
 
-    <span class="status">● Local AI</span>
+    <span class="status">
+      <span class="status-dot"></span>
+      Local AI
+    </span>
   </div>
 
-  <!-- Chat Messages -->
+  <!-- Chat Body -->
   <div class="chat-body">
 
     <!-- Welcome Message -->
@@ -22,39 +25,52 @@
 
       <div class="message-content">
         Hello! Welcome to your AI Assistant.
-        <br>
         Ask me anything. I'm ready to help!
       </div>
     </div>
 
-    <!-- Dynamic Messages -->
-    <div
-      *ngFor="let msg of messages"
-      class="message"
-      [ngClass]="msg.sender === 'user' ? 'user-message' : 'bot-message'">
+    <!-- Conversation Messages -->
+    <ng-container *ngFor="let msg of messages()">
 
-      <div *ngIf="msg.sender === 'bot'" class="avatar">
-        🤖
+      <div
+        class="message"
+        [ngClass]="msg.sender === 'user' ? 'user-message' : 'bot-message'">
+
+        <div *ngIf="msg.sender === 'bot'" class="avatar">
+          🤖
+        </div>
+
+        <div class="message-content">
+          {{ msg.text }}
+        </div>
+
+        <div *ngIf="msg.sender === 'user'" class="user-avatar">
+          You
+        </div>
+
       </div>
 
-      <div class="message-content">
-        {{ msg.text }}
-      </div>
+    </ng-container>
 
-    </div>
-
-    <!-- Loading Message -->
-    <div *ngIf="loading" class="message bot-message">
+    <!-- Loading Indicator -->
+    <div *ngIf="loading()" class="message bot-message">
       <div class="avatar">🤖</div>
 
-      <div class="message-content">
-        AI is thinking...
+      <div class="message-content typing">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
+    </div>
+
+    <!-- Debug Counter -->
+    <div class="debug-info">
+      Messages received: {{ messages().length }}
     </div>
 
   </div>
 
-  <!-- Message Input -->
+  <!-- Chat Footer -->
   <div class="chat-footer">
 
     <input
@@ -62,16 +78,14 @@
       [(ngModel)]="question"
       placeholder="Type your message..."
       (keyup.enter)="sendMessage()"
-      [disabled]="loading"
+      [disabled]="loading()"
     />
 
     <button
       type="button"
       (click)="sendMessage()"
-      [disabled]="loading || !question.trim()">
-
+      [disabled]="loading() || !question.trim()">
       Send ➤
-
     </button>
 
   </div>
