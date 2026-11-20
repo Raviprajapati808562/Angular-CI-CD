@@ -10,6 +10,7 @@ import { FileUploadComponent } from './mycomponent/fileuploadcomponent/fileuploa
 import { TransactionsComponent } from './mycomponent/transactions/transactions';
 import { AddTransactionComponent } from './savetransaction/savetransaction';
 import { Swcbsreconcomponent } from './mycomponent/swcbsreconcomponent/swcbsreconcomponent';
+import { Aichatcomponent } from './aichatcomponent/aichatcomponent';
 
 export const routes: Routes = [
   // Pages without sidebar
@@ -69,6 +70,10 @@ export const routes: Routes = [
       {
         path: 'doRecon',
         component: Swcbsreconcomponent
+      },
+      {
+        path: 'aichat',
+        component: Aichatcomponent
       },
     ]
   }
