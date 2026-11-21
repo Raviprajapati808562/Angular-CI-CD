@@ -41,7 +41,7 @@ export class Swcbsreconcomponent {
   loading = false;
   message = '';
 
-  // Replace this example URL with your actual backend endpoint.
+  
   private apiUrl = 'http://localhost:9090/v1/recon/run';
 
   constructor(private http: HttpClient) {}
