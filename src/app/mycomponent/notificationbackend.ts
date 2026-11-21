@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class Notificationbackend {
 
   private baseUrl: string = "http://localhost:9092";
-  private transactionUrl: string = "http://localhost:9091";
+  private transactionUrl: string = "http://localhost:9090";
 
   constructor(private http: HttpClient) {}
 
@@ -63,11 +63,11 @@ export class Notificationbackend {
     );
   }
  // AI API - Using Angular Proxy
-  askAI(question: string) {
-    return this.http.post(
-      '/ai/api/ask',
-      { question },
-      { responseType: 'text' }
-    );
-  }
+ askAI(question: string) {
+  return this.http.post(
+    `${this.baseUrl}/ai/api/ask`,
+    { question },
+    { responseType: 'text' }
+  );
+}
 }
